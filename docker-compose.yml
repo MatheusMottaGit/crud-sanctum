@@ -1,16 +1,15 @@
 services:
-  db:
-    container_name: crud-db
-    image: mysql:latest
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: sanctum
-      MYSQL_DATABASE: crud_sanctum
-      MYSQL_USER: sanctum
-      MYSQL_PASSWORD: sanctum
-    volumes:
-      - mysql_data:/var/lib/mysql
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_PASSWORD: root
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
 
 volumes:
   mysql_data:
