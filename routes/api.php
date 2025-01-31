@@ -10,6 +10,6 @@ Route::post('/signIn', [AuthController::class, 'signIn']);
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/create', [NoteController::class, 'create']);
     Route::get('/read', [NoteController::class, 'read']);
-    Route::put('/update', [NoteController::class, 'update']);
-    Route::delete('/delete', [NoteController::class, 'delete']);
+    Route::put('/{id}/update', [NoteController::class, 'update']);
+    Route::delete('/{id}/delete', [NoteController::class, 'delete']);
 });

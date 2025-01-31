@@ -42,7 +42,7 @@ class AuthController extends Controller
             return response()->json('Passwords do not match.', '409');
         }
 
-        $token = $request->user()->createToken('sct:tkn')->plainTextToken;
+        $token = $user->createToken('sct:tkn')->plainTextToken;
 
         return response()->json(['message' => "You're logged in!", 'token' => $token], '200');
     }

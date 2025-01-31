@@ -33,7 +33,13 @@ class NoteController extends Controller
             'description' => "required|string"
         ]);
 
-        $note = Note::where('id', $id)->update([
+        $note = Note::find($id);
+
+        if(!$note) {
+            return response()->json(['message' => 'Note not found.'], '404'); 
+        }
+
+        $note->save([
             'title' => $validated['title'],
             'description' => $validated['description']
         ]);
@@ -42,8 +48,14 @@ class NoteController extends Controller
     }
 
     public function delete(int $id) {
-        Note::where('id', $id)->delete();
+        $note = Note::find($id);
 
-        return response()->json('Note deleted.', 200);
+        if(!$note) {
+            return response()->json(['message' => 'Note not found.'], '404'); 
+        }
+
+        $note->delete();
+
+        return response()->json(['message' => 'Note deleted.'], 200);
     }
 }
